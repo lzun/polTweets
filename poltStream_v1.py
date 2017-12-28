@@ -6,10 +6,10 @@ import json
 qTerms_file = 'qTerms.txt'
 #########################################################################################
 #Variables que contienen las credenciales de Twitter 
-access_token = "427881352-jMDnsdYmrAoIqEWwapkRxOLXbeqrQKu96pCBlZyV"
-access_secret = "nzvhhLpq21B02EN7WbdLtA4CHVYaj0eLrXrjTbQpo3iER"
-consumer_key = "x9N0Rnphl1xVM8LWaOlPpWtVl"
-consumer_secret = "K0JnfXuQGPtQEtFI9JSHAfHnOGOb7pYw3svDjk1jREug6p47DN"
+access_token = 'access_token'
+access_secret = 'access_secret'
+consumer_key = 'consumer_key'
+consumer_secret = 'consumer_secret'
 
 file = open('twPolData.txt', 'a')
 query_terms = []
@@ -21,6 +21,7 @@ query_terms = []
 class Listener(StreamListener):
     #override las clases para que hagan algo
     def on_data(self, data):
+       #json parser a texto  y las guard en un archivo de texto
        json_data = json.loads(data)
        file.write(str(json_data))
 
@@ -35,7 +36,7 @@ class Listener(StreamListener):
 #########################################################################################
 
 if __name__ == '__main__':
-	#This handles Twitter authetification and the connection to Twitter Streaming API
+    #Se inicializan las conexiones (introducir las llaves para la API)
     l = Listener()
     auth = OAuthHandler(consumer_key, consumer_secret)
     auth.set_access_token(access_token, access_secret)
